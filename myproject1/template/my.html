@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <script src="{% static 'jquery-1.8.3.min.js' %}"></script>
+    <script>
+        $(document).ready(function(){
+            $("#pid").click(function(){
+                $(this).hide()
+            })
+            $("#id").on({
+                mouseenter:function(){
+                    $(this).css('background','green')
+                },
+                mouseleave:function(){
+                    $(this).css('background','yellow')
+                },
+                click:function(){
+                    $(this).css('background','black')
+                },
+                dbclick:function(){
+                    $(this).css('background','violet')
+                }
+            })
+        })
+
+    </script>
+</head>
+<body>
+    <p id="pid">Welcome</p>
+    <p id="id">My_website</p>
+</body>
+</html>

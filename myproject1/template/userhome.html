@@ -1,0 +1,12 @@
+Welcome User
+{% if messages %}
+{% for m in messages %}
+<script>
+    alert('{{m}}')
+</script>
+{% endfor %}
+{% endif %}
+
+<li><a href="{% url 'upload_img' %}">Add image</a></li>
+<a href="{% url 'profile' %}">My Profile</a>
+<li><a href="{% url 'user_logout' %}">Logout</a></li>

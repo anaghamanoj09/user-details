@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% for d in da %}
+    <form action="{% url 'edit' d.id %}" method="post">
+       {% csrf_token %}
+       
+       <input type="hidden" name="id" value="{{d.id}}">
+       <table>
+        <tr>
+            <th>Name</th>
+            <td><input type="text" value="{{d.name}}" name="name"></td>
+        </tr>
+        <tr>
+            <th>Gender</th>
+            {% if d.Gender == "male" %}
+            <td><input type="radio" name="gender" checked="true" value="male">Male</td>
+            <td><input type="radio" name="gender" value="female">Female</td>
+            {% else %}
+            <td><input type="radio" name="gender"  value="male">Male</td>
+            <td><input type="radio" name="gender" checked="true" value="female">Female</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <th>Address</th>
+            <td><textarea name="address" id="">{{d.address}}</textarea></td>
+        </tr>
+        <tr>
+            <th>Place</th>
+            <td> <select name="place" id=""><option value="{{d.place}}">{{d.place}}</option>
+            <option value="Kannur">Kannur</option>
+        <option value="Kasargod">Kasargod</option>
+    <option value="Kochi">Kochi</option></select></td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td><input type="text" value="{{d.email}}" name="email"></td>
+        </tr>
+        <tr>
+            <th>username</th>
+            <td><input type="text" value="{{d.username}}" name="username"></td>
+        </tr>
+        <tr>
+            <th>phone</th>
+            <td><input type="number" value="{{d.phone}}" name="number"></td>
+        </tr>
+        <tr>
+            <th>password</th>
+            <td><input type="text" value="{{d.password}}" name="password"></td>
+        </tr>
+       </table>
+       <input type="submit" value="Update">
+       {% endfor %}
+    </form>
+</body>
+</html>

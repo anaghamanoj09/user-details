@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static%}
+    <script src="{% static 'jquery-1.8.3.min.js' %}"></script>
+    <script>
+        $(document).ready(function(){
+            $('#username').change(function(){
+                var user=$('#username').val();
+                $.ajax({
+                    url:"{% url 'getuser' %}",
+                    data:{'name':user},
+                    success:function(data)
+                    {
+                        if(data.valid=='exist')
+                     {
+                        alert("username already exist")
+                     }
+                    },
+                    error:function(error)
+                    {
+                        alert("error occured")
+                    }
+                })
+            })
+        })
+    </script>
+
+    <script type="text/javascript">
+        function validation(){
+
+            var alpha=/^[a-zA-Z]+$/;
+            var num=/^[0-9]{10,12}$/;
+
+
+            var name=document.getElementById("name")
+            var gender=document.myform.gender;
+            var place=document.getElementById("place")
+            var address=document.getElementById("address")
+            var phone=document.getElementById("phone")
+            var email=document.getElementById("email")
+            var username=document.getElementById("username")
+            var password=document.getElementById("password")
+
+            if(name.value.length==0)
+        {
+            alert("enter a name");
+            return false;
+        }
+        else if(!name.value.match(alpha))
+        {
+            alert("invalid name");
+            return false;
+        }
+        else if(gender[0].checked == false && gender[1].checked == false)
+        {
+            alert("choose a gender");
+            return false;
+        }
+        else if(place.value.length==0)
+        {
+            alert("enter a place");
+            return false;
+        }
+        else if(address.value.length==0)
+        {
+            alert("enter address");
+            return false;
+        }
+        else if(phone.value.length==0)
+        {
+            alert("enter phone number");
+            return false;
+        }
+        else if(!phone.value.match(num))
+        {
+            alert("invalid phone number");
+            return false;
+        }
+        else if(email.value.length==0)
+        {
+            alert("enter emailid");
+            return false;
+        }
+        else if(username.value.length==0)
+        {
+            alert("enter username");
+            return false;
+        }
+        else if(password.value.length==0)
+        {
+            alert("enter password");
+            return false;
+        }
+        else{
+            return true;
+        }
+        }
+
+    </script>
+</head>
+<body>
+    <h1>Student registration</h1>
+    <form method="post" action="{% url 'register' %}" name="myform">
+        {% csrf_token %}
+    <table>
+        <tr>
+            <th>Name</th>
+            <td><input type="text" name="name" id="name"></td>
+        </tr>
+        <tr>
+            <th>Gender</th>
+            <td>
+                <input type="radio" name="gender" id="gender" value="male">male
+                <input type="radio" name="gender" id="gender" value="female">female
+            </td>
+        </tr>
+        <tr>
+            <th>Address</th>
+            <td><textarea name="address" id="address"></textarea></td>
+        </tr>
+        <tr>
+            <th>place</th>
+            <td><select name="place" id="place"><option value="">--select place--</option>
+            <option value="Kannur">Kannur</option>
+        <option value="Kasargod">Kasargod</option>
+    <option value="Kochi">Kochi</option>
+</select></td>
+        </tr>
+        <tr>
+            <th>Phone number</th>
+            <td><input type="number" name="number" id="phone"></td>
+        </tr>
+        <tr>
+            <th>Email-id</th>
+            <td><input type="text" name="email" id="email"></td>
+        </tr>
+        <tr>
+            <th>Username</th>
+            <td><input type="text" id="username" name="username" id="username"></td>
+        </tr>
+        <tr>
+            <th>Password</th>
+            <td><input type="password" name="password" id="password"></td>
+        </tr>
+        
+    </table>
+    <input type="submit" value="Register" onclick="return validation()">
+</form>
+    
+    
+</body>
+</html>

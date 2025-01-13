@@ -1,0 +1,18 @@
+Welcome to my website
+<li><a href="{% url 'link' %}">click</a></li>
+<li><a href="{% url 'register' %}">Register</a></li>
+<li><a href="{% url 'view' %}">view user</a></li>
+
+<li><a href="{% url 'login' %}">Login</a></li>
+
+<li><a href="{% url 'jquery_link' %}">jquery</a></li>
+
+<li><a href="{% url 'dropdown_binding' %}">Country</a></li>
+{% if messages %}
+{% for m in messages %}
+<script>
+    alert('{{m}}')
+</script>
+{% endfor %}
+{% endif %}
+
